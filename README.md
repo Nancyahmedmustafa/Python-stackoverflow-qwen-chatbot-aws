@@ -654,25 +654,4 @@ terraform destroy
 
 ---
 
-## Reproducibility Checklist
 
-Before submitting, confirm the repository contains:
-
-- [ ] `README.md`
-- [ ] PySpark preprocessing script: `scripts/preprocess.py`
-- [ ] Fine-tuning notebook: `notebooks/fine_tuning.ipynb`
-- [ ] Terraform files, if Terraform was used
-- [ ] Bootstrap script: `scripts/bootstrap.sh`
-- [ ] Clear prerequisites
-- [ ] Step-by-step replication commands
-- [ ] AWS region
-- [ ] Cost summary table
-- [ ] No secrets, access keys, `.pem` files, Terraform state, model weights, or large datasets committed
-
----
-
-## Notes
-
-- This project assumes the S3 bucket name `25jdvr-chatbot-bucket`. If your Terraform output creates a different bucket name, replace all commands accordingly.
-- This project assumes the AWS region `us-east-1`.
-- Keep screenshots of Terraform outputs, S3 uploads, EMR completion, and terminated resources for reporting.
