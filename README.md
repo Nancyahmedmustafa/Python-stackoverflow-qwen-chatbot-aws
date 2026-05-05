@@ -1,8 +1,8 @@
 # CISC 886 StackOverflow Qwen2.5 Chatbot on AWS
 
-End-to-end project repository for building a StackOverflow-trained chatbot using AWS infrastructure, PySpark preprocessing on EMR, Qwen2.5-1.5B-Instruct fine-tuning, and deployment through Ollama/OpenWebUI on EC2.
+End-to-end project repository for building a StackOverflow-trained chatbot using AWS infrastructure, PySpark preprocessing on EMR, Qwen2.5-7B-Instruct fine-tuning, and deployment through Ollama/OpenWebUI on EC2.
 
-**Model:** `Qwen/Qwen2.5-1.5B-Instruct`  
+**Model:** `Qwen/Qwen2.5-7B-Instruct`  
 **AWS Region:** `us-east-1`  
 **Primary Dataset:** `stackoverflow-Posts.7z`
 
@@ -41,7 +41,7 @@ cisc886-chatbot/
 
 - AWS account with billing enabled.
 - IAM user for project work, not the AWS root user.
-- Hugging Face account or access to download `Qwen/Qwen2.5-1.5B-Instruct`, if required.
+- Hugging Face account or access to download `Qwen/Qwen2.5-7B-Instruct`, if required.
 
 ### Local Tools
 
@@ -370,15 +370,15 @@ pip install huggingface_hub
 Download Qwen2.5:
 
 ```bash
-huggingface-cli download Qwen/Qwen2.5-1.5B-Instruct \
-  --local-dir ./qwen2.5-1.5b-instruct/ \
+huggingface-cli download Qwen/Qwen2.5-7B-Instruct \
+  --local-dir ./Qwen2.5-7B-instruct/ \
   --include "*.safetensors" "*.json" "tokenizer*"
 ```
 
 Upload to S3:
 
 ```bash
-aws s3 sync ./qwen2.5-1.5b-instruct/ \
+aws s3 sync ./Qwen2.5-7B-instruct/ \
   s3://$BUCKET_NAME/model/qwen2.5-base/ \
   --region us-east-1
 ```
@@ -524,7 +524,7 @@ notebooks/fine_tuning.ipynb
 A typical workflow is:
 
 1. Load processed train/validation data from S3.
-2. Load `Qwen/Qwen2.5-1.5B-Instruct`.
+2. Load `Qwen/Qwen2.5-7B-Instruct`.
 3. Tokenize prompt-response records.
 4. Fine-tune using the notebook.
 5. Save the resulting model artifacts.
